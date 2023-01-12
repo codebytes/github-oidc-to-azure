@@ -20,7 +20,7 @@ az ad app federated-credential create \
    --parameters "{\"name\":\"${githubRepositoryName}-env-prod\",\"issuer\":\"https://token.actions.githubusercontent.com\",\"subject\":\"repo:${githubOrganizationName}/${githubRepositoryName}:environment:prod\",\"audiences\":[\"api://AzureADTokenExchange\"]}"
 az ad app federated-credential create \
    --id $applicationRegistrationObjectId \
-   --parameters "{\"name\":\"${githubRepositoryName}-branch-main\",\"issuer\":\"https://token.actions.githubusercontent.com\",\"subject\":\"repo:${githubOrganizationName}/${githubRepositoryName}:branch:main\",\"audiences\":[\"api://AzureADTokenExchange\"]}"
+   --parameters "{\"name\":\"${githubRepositoryName}-branch-main\",\"issuer\":\"https://token.actions.githubusercontent.com\",\"subject\":\"repo:${githubOrganizationName}/${githubRepositoryName}:ref:refs/heads/main\",\"audiences\":[\"api://AzureADTokenExchange\"]}"
 
 az ad sp create --id $applicationRegistrationObjectId 
 az role assignment create --assignee $applicationRegistrationAppId --role Contributor
